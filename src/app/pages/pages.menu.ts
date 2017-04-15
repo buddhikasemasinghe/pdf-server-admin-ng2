@@ -324,6 +324,28 @@ export const PAGES_MENU = [
             target: '_blank'
           }
         }
+      },
+      {
+        path: 'company',
+        data: {
+          menu: {
+            title: 'general.menu.company',
+            icon: 'ion-briefcase',
+            selected: false,
+            expanded: false,
+            order: 900,
+          }
+        },
+        children: [
+          {
+            path: 'company-list',
+            data: {
+              menu: {
+                title: 'general.menu.companyList',
+              }
+            }
+          }
+        ]
       }
     ]
   }

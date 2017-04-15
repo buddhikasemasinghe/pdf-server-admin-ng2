@@ -1,0 +1,26 @@
+<div class="horizontal-scroll">
+  <table class="table table-hover">
+    <thead>
+    <tr class="black-muted-bg">
+      <th class="browser-icons"></th>
+      <th>Name</th>
+      <th>Description</th>
+      <th class="table-arr">Id</th>
+      <th>Pipeline Ref</th>
+      <th class="table-arr"></th>
+      <th class="table-arr"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of companyTableData | orderBy : name;let i = index" [attr.data-index]="i" class="no-top-border">
+      <td>{{i+1}}</td>
+      <td ngClass="nowrap">{{item.name}}</td>
+      <td class="align-left">{{item.description}}</td>
+      <td class="table-arr">{{item.id}}</td>
+      <td class="align-left">{{item.runwayRef}}</td>
+      <td class="table-arr"><i class="ion-edit" (click)="editCompany()"></i></td>
+      <td class="table-arr"><i class="ion-ios-trash"></i></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
