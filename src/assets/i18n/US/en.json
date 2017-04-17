@@ -50,7 +50,12 @@
       "menu_level_1_2_1": "Menu Level 1.2.1",
       "external_link": "External Link",
       "company": "Company",
-      "companyList": "List Companies"
+      "company_list": "Companies",
+      "pdf_categories": "PDF Categoies",
+      "template": "Templates",
+      "library": "Tag Library",
+      "library-global": "Global Tag Library",
+      "library-company": "Company Tag Library"
     }
   }
 }

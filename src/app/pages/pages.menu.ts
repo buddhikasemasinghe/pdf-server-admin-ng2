@@ -341,7 +341,45 @@ export const PAGES_MENU = [
             path: 'company-list',
             data: {
               menu: {
-                title: 'general.menu.companyList',
+                title: 'general.menu.company_list',
+              }
+            }
+          },
+          {
+            path: 'pdf-categories',
+            data: {
+              menu: {
+                title: 'general.menu.pdf_categories',
+              }
+            }
+          }
+        ]
+      },
+      {
+        path: 'library',
+        data: {
+          menu: {
+            title: 'general.menu.library',
+            icon: 'ion-settings',
+            selected: false,
+            expanded: false,
+            order: 900,
+          }
+        },
+        children: [
+          {
+            path: 'library-global',
+            data: {
+              menu: {
+                title: 'general.menu.library-global',
+              }
+            }
+          },
+          {
+            path: 'library-company',
+            data: {
+              menu: {
+                title: 'general.menu.library-company',
               }
             }
           }
