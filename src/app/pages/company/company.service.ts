@@ -7,22 +7,25 @@ export class CompanyService {
     private baseUrl = API_URL+"admin/company/";
     constructor(private http: Http) {
     }
-    companies=[];
-    getCompanies() {
-        this.http.get(this.baseUrl+'view')
-            .subscribe(data => {
-                console.log(data, data.json())
-                this.companies.push(...data.json())
-            });
-        return this.companies;
+    getAll() {
+        let companies$ = this.http
+            .get(`${this.baseUrl}/view`, {headers: this.getHeaders()})
+            .map(mapCompanies);
+        return companies$;
     }
 
+    getAllPipelineClients() {
+        let pipelineClients$ = this.http
+            .get(API_URL+'admin/client/pipeline/clients', {headers: this.getHeaders()})
+            .map(mapPipelineClient);
+        return pipelineClients$;
+    }
 
     getCompanyById(id:string){
-        let person$ = this.http
+        let company$ = this.http
             .get(`${this.baseUrl}/viewCompanyById/${id}`, {headers: this.getHeaders()})
             .map(mapCompany);
-        return person$;
+        return company$;
     }
 
     private getHeaders(){
@@ -31,6 +34,14 @@ export class CompanyService {
         return headers;
     }
 
+}
+
+function mapPipelineClient(response:Response): any{
+    return response.json().client;
+}
+
+function mapCompanies(response:Response): CompanyModel[]{
+    return response.json().map(toCompany)
 }
 
 function mapCompany(response:Response): CompanyModel{
@@ -43,8 +54,7 @@ function toCompany(r:any): CompanyModel{
         description: r.description,
         name: r.name,
         externalRef: r.runwayRef,
-        mode: r.mode,
+        modes: r.modes,
     });
-    console.log('Parsed company:', company);
     return company;
 }

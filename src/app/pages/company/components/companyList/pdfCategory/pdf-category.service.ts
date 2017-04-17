@@ -10,10 +10,10 @@ export class PdfCategoryService {
     constructor(private http: Http) {
     }
     getAll(): Observable<PdfCategoryModel[]>{
-        let people$ = this.http
+        let modes$ = this.http
             .get(`${this.baseUrl}/view`, {headers: this.getHeaders()})
             .map(mapPdfCategories);
-        return people$;
+        return modes$;
     }
     
 

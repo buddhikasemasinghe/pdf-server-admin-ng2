@@ -12,13 +12,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of companyTableData | orderBy : name;let i = index" [attr.data-index]="i" class="no-top-border">
+    <tr *ngFor="let item of companies | orderBy : order;let i = index" [attr.data-index]="i" class="no-top-border">
       <td>{{i+1}}</td>
       <td ngClass="nowrap">{{item.name}}</td>
       <td class="align-left">{{item.description}}</td>
       <td class="table-arr">{{item.id}}</td>
-      <td class="align-left">{{item.runwayRef}}</td>
-      <td class="table-arr"><edit-company [company]="item" [pdfCategories]="pdfCategories"></edit-company></td>
+      <td class="align-left">{{item.externalRef}}</td>
+      <td class="table-arr"><i class="ion-edit" (click)="showEditCompanyModal(item)"></i></td>
       <td class="table-arr"><i class="ion-ios-trash"></i></td>
     </tr>
     </tbody>

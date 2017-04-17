@@ -1,68 +1,62 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+import {Component, OnInit, Input} from '@angular/core';
+import {IMultiSelectOption, IMultiSelectSettings} from 'angular-2-dropdown-multiselect';
 import {PdfCategoryModel} from "../../pdfCategory/pdf-category.model";
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {CompanyModel} from "../../../../company.model";
 
 @Component({
-  selector: 'edit-company',
-  styleUrls: [('./edit-company-modal.component.scss')],
-  templateUrl: './edit-company-modal.component.html',
-  inputs: ['company', 'pdfCategories'],
+    selector: 'edit-company',
+    styleUrls: [('./edit-company-modal.component.scss')],
+    templateUrl: './edit-company-modal.component.html'
 })
 
 export class EditCompanyModal implements OnInit {
 
-  modalHeader: string;
-  @Input() company :any;
-  @Input() pdfCategories :PdfCategoryModel[];
-  @Input() lg: boolean = false;
-  constructor() {
-  }
+    modalHeader:string;
 
-  ngOnInit() {
-    console.log("On init");
-    console.log(this.myOptions);
-    for (let pdfCategory of this.pdfCategories) {
-      this.myOptions.push({
-        id : pdfCategory.id, name : pdfCategory.name
-      })
+    company:CompanyModel;
+    pdfCategories:PdfCategoryModel[];
+    pipelineClients:any[] = [];
+
+
+    categoriesModel:number[] = [];
+    allCategories:IMultiSelectOption[] = [];
+    pipelineClientModel:number[] = [];
+    allPipelineClients:IMultiSelectOption[] = [];
+
+    constructor(private activeModal:NgbActiveModal) {
     }
 
-    for(let assignCategory of this.company.modes){
-      //this.optionsModel.push(assignCategory.id);
+    ngOnInit() {
+
+        for (let pdfCategory of this.pdfCategories) {
+            this.allCategories.push({
+                id: pdfCategory.id, name: pdfCategory.name
+            });
+        }
+
+        for (let assignCategory of this.company.modes) {
+            this.categoriesModel.push(assignCategory.id);
+        }
+
+        for (let client of this.pipelineClients) {
+            this.allPipelineClients.push({
+                id: client.id, name: client.clientName
+            });
+        }
+
+        this.pipelineClientModel.push(this.company.externalRef);
+
+
     }
-  }
 
-  myOptions: IMultiSelectOption[] = [];
-  optionsModel: number[] = []
+    pipelineClientSettings: IMultiSelectSettings = {
+        selectionLimit : 1,
+        enableSearch : true,
+        pullRight : true
+    };
 
-  //  myOptions: IMultiSelectOption[] = [
-  //    { id: 1, name: 'Option 1' },
-  //    { id: 2, name: 'Option 2' }
-  // ];
-
-  public checkboxModel = [{
-    name: 'Checkbox with success',
-    state: false,
-    class: 'has-success checkbox'
-  }, {
-    name: 'Checkbox with warning',
-    state: false,
-    class: 'has-warning checkbox',
-  }, {
-    name: 'Checkbox with error',
-    state: false,
-    class: 'has-error checkbox'
-  }];
-
-  public checkboxPropertiesMapping = {
-    model: 'state',
-    value: 'name',
-    label: 'name',
-    baCheckboxClass: 'class'
-  };
-
-  onChange() {
-    console.log(this.optionsModel);
-  }
-
+    closeModal() {
+        this.activeModal.close();
+    }
 }

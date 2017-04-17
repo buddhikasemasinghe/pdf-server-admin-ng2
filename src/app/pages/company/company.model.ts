@@ -3,6 +3,6 @@ export class CompanyModel{
     id : string;
     description : string;
     externalRef : string;
-    mode : any[];
+    modes : any[];
     templateGroups : any[]
 }
