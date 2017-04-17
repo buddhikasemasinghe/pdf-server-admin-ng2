@@ -1,38 +1,44 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {CompanyModel} from "../../../../company.model";
-import {CompanyService} from "../../../../company.service";
-import {Observable} from "rxjs/Observable";
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+import {PdfCategoryModel} from "../../pdfCategory/pdf-category.model";
 
 @Component({
   selector: 'edit-company',
   styleUrls: [('./edit-company-modal.component.scss')],
   templateUrl: './edit-company-modal.component.html',
-  inputs: ['company'],
+  inputs: ['company', 'pdfCategories'],
 })
 
 export class EditCompanyModal implements OnInit {
 
   modalHeader: string;
-  modalContent: string = `Lorem ipsum dolor sit amet,
-   consectetuer adipiscing elit, sed diam nonummy
-   nibh euismod tincidunt ut laoreet dolore magna aliquam
-   erat volutpat. Ut wisi enim ad minim veniam, quis
-   nostrud exerci tation ullamcorper suscipit lobortis
-   nisl ut aliquip ex ea commodo consequat.`;
-
-  //company : CompanyModel;
   @Input() company :any;
+  @Input() pdfCategories :PdfCategoryModel[];
   @Input() lg: boolean = false;
-  constructor(private _companyService : CompanyService) {
+  constructor() {
   }
 
   ngOnInit() {
-    // let companyObservable:Observable = this._companyService.getCompanyById(this.pk);
-    // console.log(companyObservable);
-    // companyObservable.subscribe(
-    //     p => this.company = p
-    // );
+    console.log("On init");
+    console.log(this.myOptions);
+    for (let pdfCategory of this.pdfCategories) {
+      this.myOptions.push({
+        id : pdfCategory.id, name : pdfCategory.name
+      })
+    }
+
+    for(let assignCategory of this.company.modes){
+      //this.optionsModel.push(assignCategory.id);
+    }
   }
+
+  myOptions: IMultiSelectOption[] = [];
+  optionsModel: number[] = []
+
+  //  myOptions: IMultiSelectOption[] = [
+  //    { id: 1, name: 'Option 1' },
+  //    { id: 2, name: 'Option 2' }
+  // ];
 
   public checkboxModel = [{
     name: 'Checkbox with success',
@@ -54,5 +60,9 @@ export class EditCompanyModal implements OnInit {
     label: 'name',
     baCheckboxClass: 'class'
   };
+
+  onChange() {
+    console.log(this.optionsModel);
+  }
 
 }

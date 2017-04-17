@@ -23,6 +23,8 @@
           <input type="text" class="form-control" id="externalRef" placeholder="externalRef" [(ngModel)]="company.runwayRef">
         </div>
 
+        <ss-multiselect-dropdown [options]="myOptions" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+
         <ba-multi-checkbox [(ngModel)]="checkboxModel" [propertiesMapping]="checkboxPropertiesMapping"></ba-multi-checkbox>
 
         <div class="modal-footer">

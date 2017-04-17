@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit} from '@angular/core';
 
 import 'style-loader!./companyList.scss';
 import {CompanyService} from '../../company.service'
 import {EditCompanyModal} from './components/edit/edit-company-modal.component.ts';
+import {PdfCategoryService} from "./pdfCategory/pdf-category.service";
+import {PdfCategoryModel} from "./pdfCategory/pdf-category.model";
 
 
 @Component({
@@ -11,28 +12,21 @@ import {EditCompanyModal} from './components/edit/edit-company-modal.component.t
   templateUrl: './companyList.html',
   directives: [EditCompanyModal]
 })
-export class CompanyList {
+export class CompanyList implements OnInit{
   companyTableData:Array<any>;
+  pdfCategories:Array<PdfCategoryModel>;
   errorMessage: string = '';
   isLoading: boolean = true;
 
-  constructor(private _companyService : CompanyService) {
+  constructor(private _companyService : CompanyService, private _pdfCategoryService : PdfCategoryService) {
     this.companyTableData = _companyService.getCompanies();
+
   }
 
-  // editCompany(id:string) {
-  //   const activeModal = this.modalService.open(EditCompanyModal, {size: 'lg'});
-  //   activeModal.componentInstance.modalHeader = 'Edit company';
-  //
-  //   let companyObservable:Observable = this._companyService.getCompanyById(id);
-  //   console.log(companyObservable);
-  //   companyObservable.subscribe(
-  //      p => activeModal.componentInstance.company = p
-  //   );
-  // }
-  //
-  // addCompany() {
-  //   const activeModal = this.modalService.open(AddCompanyModal, {size: 'lg'});
-  //   activeModal.componentInstance.modalHeader = 'Add company';
-  // }
+  ngOnInit(){
+    this._pdfCategoryService
+        .getAll()
+        .subscribe(p => this.pdfCategories = p)
+  }
+
 }

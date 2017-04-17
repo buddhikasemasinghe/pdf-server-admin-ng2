@@ -4,8 +4,7 @@ import { CompanyModel } from './company.model';
 
 @Injectable()
 export class CompanyService {
-    private baseUrl = 'http://pdfserver-staging.runway.com.au/sog-pdf-server/admin/company/';
-
+    private baseUrl = API_URL+"admin/company/";
     constructor(private http: Http) {
     }
     companies=[];
@@ -17,7 +16,7 @@ export class CompanyService {
             });
         return this.companies;
     }
-    
+
 
     getCompanyById(id:string){
         let person$ = this.http
