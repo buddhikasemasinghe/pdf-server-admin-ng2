@@ -18,7 +18,7 @@
       <td class="align-left">{{item.description}}</td>
       <td class="table-arr">{{item.id}}</td>
       <td class="align-left">{{item.runwayRef}}</td>
-      <td class="table-arr"><i class="ion-edit" (click)="editCompany()"></i></td>
+      <td class="table-arr"><edit-company [company]="item"></edit-company></td>
       <td class="table-arr"><i class="ion-ios-trash"></i></td>
     </tr>
     </tbody>

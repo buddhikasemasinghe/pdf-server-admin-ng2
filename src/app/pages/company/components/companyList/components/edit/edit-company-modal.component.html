@@ -1,14 +1,36 @@
-<div class="modal-content">
-  <div class="modal-header">
-    <h4 class="modal-title">{{modalHeader}}</h4>
-    <button class="close" aria-label="Close" (click)="closeModal()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    {{modalContent}}
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary confirm-btn" (click)="closeModal()">Save changes</button>
+<div class="modal fade" id="companyEditModal{{pk}}" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Company</h4>
+        <button class="close" aria-label="Close" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        <label for="companyName">Name</label>
+        <input type="text" class="form-control" id="companyName" placeholder="Name" [ngModel]="company.name">
+        </div>
+
+        <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" placeholder="Description" [ngModel]="company.description">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Pipeline Reference</label>
+          <input type="text" class="form-control" id="externalRef" placeholder="externalRef" [(ngModel)]="company.runwayRef">
+        </div>
+
+        <ba-multi-checkbox [(ngModel)]="checkboxModel" [propertiesMapping]="checkboxPropertiesMapping"></ba-multi-checkbox>
+
+        <div class="modal-footer">
+        <button class="btn btn-primary confirm-btn" (click)="save()">Save changes</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<i class="ion-edit"  data-toggle="modal" attr.data-target="#companyEditModal{{pk}}" *ngIf='!lg'></i>

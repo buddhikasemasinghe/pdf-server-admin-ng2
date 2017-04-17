@@ -1,8 +1,10 @@
+@import '../../../../../../theme/sass/conf/conf';
 
 .modal-buttons .btn {
   margin-right: 20px;
 }
 
-//.modal-content {
-//  color: $dropdown-text;
-//}
+.modal-content {
+  color: $dropdown-text;
+  background-color: $primary;
+}
