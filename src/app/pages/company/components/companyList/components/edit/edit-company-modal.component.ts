@@ -21,7 +21,7 @@ export class EditCompanyModal implements OnInit {
 
     categoriesModel:number[] = [];
     allCategories:IMultiSelectOption[] = [];
-    pipelineClientModel:number[] = [];
+    pipelineClientModel:string[] = [];
     allPipelineClients:IMultiSelectOption[] = [];
 
     constructor(private activeModal:NgbActiveModal) {

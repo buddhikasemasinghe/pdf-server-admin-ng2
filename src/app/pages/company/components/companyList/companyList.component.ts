@@ -11,8 +11,7 @@ import {CompanyModel} from "../../company.model";
 
 @Component({
   selector: 'companyList',
-  templateUrl: './companyList.html',
-  directives: [EditCompanyModal]
+  templateUrl: './companyList.html'
 })
 export class CompanyList implements OnInit{
   companies:Array<CompanyModel>;

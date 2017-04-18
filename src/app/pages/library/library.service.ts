@@ -36,9 +36,12 @@ function toGlobalLibrary(r:any): GlobalLibraryModel{
     let libraryModel = <GlobalLibraryModel>({
         id: r.id,
         description: r.description,
+        internalName:r.internalName,
         name: r.name,
-        externalRef: r.runwayRef,
-        modes: r.modes,
+        model: r.model,
+        property: r.property,
+        category: r.tagCategory,
+        optionalDripPosition: r.propertySuffixIndex
     });
     return libraryModel;
 }
